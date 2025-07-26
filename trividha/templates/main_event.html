@@ -1,0 +1,97 @@
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1 overlay">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-12">
+                        
+                        <div class="slider_text text-center">
+                            <!--<div class="shape_1 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                                <img src="img/shape/shape_1.svg" alt="">
+                            </div>
+                            <div class="shape_2 wow fadeInDown" data-wow-duration="1s" data-wow-delay=".2s">
+                                <img src="img/shape/shape_2.svg" alt="">
+                            </div> -->
+                            {%if details%}
+                            <span class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">{{details.date}}</span>
+                            
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">TRIVIDHA  {{details.date.year}}</h3>
+                            {%endif%}
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">Bmm School, Pampady</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- slider_area_end -->
+
+    <!-- performar_area_start  -->
+    <div class="performar_area black_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title mb-80">
+                        <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">Events</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div  class="single_performer wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                                <div data-tilt class="thumb">
+                   {%if details%}
+                                    <img src="{{details.optazia.url}}" alt="">
+                                    <a href="#STHITHAPRAGYA"></a>
+                    
+                    
+                    
+                                </div>
+                                <div class="performer_heading">
+                                    <h4>STHITHAPRAGYA</h4>
+                                    <span>Science Stream</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div  class="single_performer wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                                <div data-tilt class="thumb">
+                                    <img src='{{details.optazia.url}}' alt="">
+                                </div>
+                                <div class="performer_heading">
+                                    <h4>OPTAZIA</h4>
+                                    <span>Commerce Stream</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div  class="single_performer wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+                                <div data-tilt class="thumb">
+                                    <img src='{{details.optazia.url}}' alt="">
+                                </div>
+                                <div class="performer_heading">
+                                    <h4>Xenora</h4>
+                                    <span>Humanities Stream</span>
+                                </div>
+                            </div>
+                        </div>
+                    {%endif%}
+                    
+                        <!--<div class="col-lg-6 col-md-6">
+                            <div   class="single_performer wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                                <div data-tilt class="thumb">
+                                    <img src="img/performer/4.png" alt="">
+                                </div>
+                                <div class="performer_heading">
+                                    <h4>Filaris Habol</h4>
+                                    <span>Acoustic drum</span>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

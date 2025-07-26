@@ -1,0 +1,31 @@
+ 
+ <div class="about_area black_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_title text-center mb-80">
+                        <h3 class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s" >About Program</h3>
+                        <p class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".4s" >Trividha is a dynamic fest that brings together students from humanities, science, and commerce, fostering an unforgettable experience.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-md-6">
+                    <div class="about_thumb">
+                    {%if details%}
+                        <div class="thumb_inner  wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+                            <img src="{{details.main_poster.url}}" alt="">
+                        </div>
+                    {%endif%}
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6">
+                    <div class="about_info pl-68">
+                        <h4 class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">It’s time to register your names</h4>
+                        <p  class=" wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".6s">The event consistently draws a diverse range of students from various academic streams.</p>
+                        <a href="{%url 'register'%}" class="boxed-btn3  wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".7s">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

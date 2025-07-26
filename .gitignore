@@ -1,0 +1,19 @@
+# Ignore the virtual environment
+trienv/
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Django-specific
+*.sqlite3
+*.log
+.env
+
+# VSCode / editor files
+.vscode/
+*.code-workspace
+
+# OS-specific
+.DS_Store
+Thumbs.db
