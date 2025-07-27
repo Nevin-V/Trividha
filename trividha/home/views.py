@@ -7,4 +7,4 @@ def index(request):
     det=details.objects.first()
     return render(request,'try.html',{"details":det})
 def register(request):
-    return render(request,'form.html')
+    return render(request,'form1.html')
