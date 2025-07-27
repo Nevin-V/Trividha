@@ -54,34 +54,32 @@
 					    </div>
 						<!-- STHITHAPRAGYA Events -->
 						<div class="form-section">
+						 
 							<h2 class="event">STHITHAPRAGYA</h2>
-				
-							<h3 class="game">Escape Room <span class="small">(one team per school)</span></h3>
+				{%for i in events%}
+				    {%if i.host.name.upper == "STHITHAPRAGYA"%}
+
+					  {%if i.is_team_event%}
+							<h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+						
+							
+							<label for="escape-room-participant" class="font">Members Name:</label>
+								<div class="input-container" id="escape-room-container">
+									<input type="text" id="escape-room-participant" class="input-field" name="entry.805764471">
+								</div>
+							
+							<button type="button" onclick="addInput('escape-room-container')"> add team</button>
+					  {%else%}
+							<h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
 						
 							
 							<label for="escape-room-participant" class="font">Participant Name:</label>
 							<input type="text" id="escape-room-participant" class="input-field" name="entry.805764471">
 							<button type="button">add Participant</button>
-				
-							<h3 class="game">Celestial Quest <span class="small">(one team per school)</span></h3>
-							<label for="celestial-quest-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="celestial-quest-participant" name="entry.608381679">
-				
-							<h3 class="game">Mad Max Math <span class="small">(any number of team per school)</span></h3>
-							<label for="mad-max-math-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="mad-max-math-participant" name="entry.249038951">
-				
-							<h3 class="game">Reelistic Delights <span class="small">(one team per school)</span></h3>
-							<label for="reelistic-delights-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="reelistic-delights-participant" name="entry.1799725311">
-				
-							<h3 class="game">Prompt Frames <span class="small">(any number of team per school)</span></h3>
-							<label for="prompt-frames-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="prompt-frames-participant" name="entry.175242003">
-				
-							<h3 class="game">Smash the Bug <span class="small">(any number of team per school)</span></h3>
-							<label for="smash-the-bug-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="smash-the-bug-participant" name="entry.156878973">
+					 {%endif%}					  
+				    {%endif%}
+				{%endfor%}
+
 						</div>
 				
 						<!-- OPTAZIA Events -->
@@ -172,3 +170,15 @@
 </body>
 </html>
 
+<script>
+function addInput(containerId, nameAttr) {
+	const container = document.getElementById(containerId);
+
+	const input = document.createElement('input');
+	input.type = 'text';
+	input.name = nameAttr;
+	input.className = 'input-field';
+
+	container.appendChild(input);
+}
+</script>
