@@ -15,17 +15,17 @@
 		<!-- code here -->
 		<div class="card">
 
-			<form class="card-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSc3_sXWiDBHyfBDweO9VN3o8s9NdclZI44UXeVPWkUU2Emiog/formResponse" >
+			<form class="card-form" method="post" >
 					<h1 id="heading">TRIVIDHA 2024</h1>
 				
-					<form id="event-registration-form">
-				
+					<form id="event-registration-form" method="post">
+				{% csrf_token %}
 						<!-- Basic Information -->
 						<div class="form-section">
 							<h2 style="color: #94b958"; >Basic Information</h2>
 							<label for="name" class="font" id="det">School Name:</label>
 							
-							<input type="text" class="input-field" name="entry.1511561834" required>
+							<input type="text" class="input-field" name="school" required>
 				
                             <br><br>
 						
@@ -56,29 +56,32 @@
 						<div class="form-section">
 						 
 							<h2 class="event">STHITHAPRAGYA</h2>
-				{%for i in events%}
-				    {%if i.host.name.upper == "STHITHAPRAGYA"%}
+{% for i in events %}
+    {% if i.host.name.upper == "STHITHAPRAGYA" %}
+        {% if i.is_team_event %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            
+            <label for="team-{{i.id}}-participant" class="font">Members Name:</label>
+            <div class="input-container" id="team-{{i.id}}-container">
+                <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Team Member</button>
+            
+        {% else %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            
+            <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
+            <div class="input-container" id="individual-{{i.id}}-container">
+                <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+        {% endif %}
+        <br><br> <!-- Add some spacing between events -->
+    {% endif %}
+{% endfor %}
 
-					  {%if i.is_team_event%}
-							<h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
-						
-							
-							<label for="escape-room-participant" class="font">Members Name:</label>
-								<div class="input-container" id="escape-room-container">
-									<input type="text" id="escape-room-participant" class="input-field" name="entry.805764471">
-								</div>
-							
-							<button type="button" onclick="addInput('escape-room-container')"> add team</button>
-					  {%else%}
-							<h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
-						
-							
-							<label for="escape-room-participant" class="font">Participant Name:</label>
-							<input type="text" id="escape-room-participant" class="input-field" name="entry.805764471">
-							<button type="button">add Participant</button>
-					 {%endif%}					  
-				    {%endif%}
-				{%endfor%}
 
 						</div>
 				
@@ -158,7 +161,7 @@
 								document.getElementById('total-amount').innerText = 'Total Amount to be Paid: ₹' + totalAmount;
 							});
 						</script>
-						<button type="submit" class="button-87 ">Upload screenshot</button>
+						<button type="submit"  class="button-87 ">Upload screenshot</button>
 						
 					</form>
 				</body>

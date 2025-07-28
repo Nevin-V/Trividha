@@ -39,3 +39,6 @@ class participant_details(models.Model):
     name=models.CharField(max_length=30)
     school=models.ForeignKey(school, on_delete=models.CASCADE)
     events=models.ForeignKey(events, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.events.name
