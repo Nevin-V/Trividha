@@ -105,11 +105,17 @@ input {
 			transform: translateY(-1.5rem);
 		}
 	}
+	margin-top: 11px;
 }
 input, select, input-field{
     color: #ffffff;
 }
-
+.but{
+	background: bisque;
+    margin-top: 10px;
+    height: 33px;
+    border-radius: 32px;
+}
 
 .action {
 	margin-top: 2rem;

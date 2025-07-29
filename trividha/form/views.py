@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import events
-from .models import school
+from .models import school,basic_details
 from .models import participant_details
 from django.contrib import messages
+from home.models import details
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -23,6 +24,12 @@ def register(request):
         current_school, created = school.objects.get_or_create(name=school_name)
         print(f"School object: {current_school} (Created: {created})")
 
+
+        part=request.POST.get("participant_no")
+        teaching=request.POST.get("non teaching")
+        non_veg=request.POST.get("non veg")
+        veg=request.POST.get("veg")
+        basic_details.objects.create(school=current_school,participants_number=part,staff_number=teaching,veg=veg,non_veg=non_veg)
         
         # Process participant data
         saved_count = 0
@@ -60,4 +67,5 @@ def register(request):
 
 
     event_obj=events.objects.all
-    return render(request,'form.html',{"events":event_obj})
+    date=details.objects.first
+    return render(request,'form.html',{"events":event_obj,"date":date})

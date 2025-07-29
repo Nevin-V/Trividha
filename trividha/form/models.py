@@ -15,7 +15,7 @@ class basic_details(models.Model):
     non_veg=models.IntegerField()
 
     def __str__(self):
-        return self.school
+        return self.school.name
 
 class main_events(models.Model):
     name=models.CharField(max_length=30)

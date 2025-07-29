@@ -16,8 +16,9 @@
 		<div class="card">
 
 			<form class="card-form" method="post" >
-					<h1 id="heading">TRIVIDHA 2024</h1>
-				
+				{%if date%}
+					<h1 id="heading">TRIVIDHA {{date.date.year}}</h1>
+				{%endif%}
 					<form id="event-registration-form" method="post">
 				{% csrf_token %}
 						<!-- Basic Information -->
@@ -31,20 +32,20 @@
 						
 				
 							<label for="students" class="font" id="det">Number of Students Participating:</label>
-							<input type="number" class="input-field" id="students" name="entry.2122064097" required>
+							<input type="number" class="input-field" id="students" name="participant_no" required>
 				            <br><br>
 							<label for="teachers" class="font" id="det">Number of Teachers And Non Teaching staffs:</label>
-							<input type="number" class="input-field" id="teachers" name="entry.1833231113" required>
+							<input type="number" class="input-field" id="teachers" name="non teaching" required>
 							<br><br>
 
 							<h4 style="color: #94b958"; >FOOD</h4>
 							<label for="FOOD" class="font" id="det">Number of Non veg meals</label>
-							<input type="number" class="input-field" id="teachers" name="entry.1314452266" required>
+							<input type="number" class="input-field" id="teachers" name="non veg" required>
 
 							<br><br>
 							<label for="FOOD" class="font" id="det">Number of veg meals</label>
 							
-							<input type="number" class="input-field" id="teachers" name="entry.800521533" required>
+							<input type="number" class="input-field" id="teachers" name="veg" required>
 				
 						</div>
 						<div class="note">
@@ -61,12 +62,11 @@
         {% if i.is_team_event %}
             <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
             
-            <label for="team-{{i.id}}-participant" class="font">Members Name:</label>
+            <label for="team-{{i.id}}-participant" class="font">Team:</label>
             <div class="input-container" id="team-{{i.id}}-container">
                 <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
-            
-            <button type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Team Member</button>
+            <button class="but"  type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Next Team </button>
             
         {% else %}
             <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
@@ -76,7 +76,7 @@
                 <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
             
-            <button type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Participant</button>
         {% endif %}
         <br><br> <!-- Add some spacing between events -->
     {% endif %}
@@ -88,57 +88,89 @@
 						<!-- OPTAZIA Events -->
 						<div class="form-section">
 							<h2 class="event">OPTAZIA</h2>
-				
-							<h3 class="game">Magnate <span class="small">(one team per school)</span></h3>
-							<label for="magnate-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="magnate-participant" name="entry.1184195039">
-				
-							<h3 class="game">Innovazione <span class="small">(two team per school)</span></h3>
-							<label for="innovazione-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="innovazione-participant" name="entry.181222727">
-				
-							<h3 class="game">Game & Chaos <span class="small">(two team per school)</span></h3>
-							<label for="game-chaos-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="game-chaos-participant" name="entry.846242540">
-				
-							<h3 class="game">Marcedo <span class="small">(one team per school)</span></h3>
-							<label for="marcedo-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="marcedo-participant" name="entry.432436442">
-						</div>
+{% for i in events %}
+    {% if i.host.name.upper == "OPTAZIA" %}
+        {% if i.is_team_event %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            
+            <label for="team-{{i.id}}-participant" class="font">Team:</label>
+            <div class="input-container" id="team-{{i.id}}-container">
+                <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Next Team </button>
+            
+        {% else %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            
+            <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
+            <div class="input-container" id="individual-{{i.id}}-container">
+                <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button  class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+        {% endif %}
+        <br><br> <!-- Add some spacing between events -->
+    {% endif %}
+{% endfor %}
 				
 						<!-- XENORA Events -->
 						<div class="form-section">
 							<h2 class="event">XENORA</h2>
-				
-							<h3 class="game">Press Pursuit <span class="small">(one team per school)</span></h3>
-							<label for="press-pursuit-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="press-pursuit-participant" name="entry.464707746">
-				
-							<h3 class="game">Rhetoric Rivals <span class="small">(one team per school)</span></h3>
-							<label for="rhetoric-rivals-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="rhetoric-rivals-participant" name="entry.344521604">
-				
-							<h3 class="game">Ciphered Clue <span class="small">(one team per school)</span></h3>
-							<label for="ciphered-clue-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="ciphered-clue-participant" name="entry.1836659126">
-						</div>
+{% for i in events %}
+    {% if i.host.name.upper == "XENORA" %}
+        {% if i.is_team_event %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            
+            <label for="team-{{i.id}}-participant" class="font">Team:</label>
+            <div class="input-container" id="team-{{i.id}}-container">
+                <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Next Team </button>
+            
+        {% else %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            
+            <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
+            <div class="input-container" id="individual-{{i.id}}-container">
+                <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+        {% endif %}
+        <br><br> <!-- Add some spacing between events -->
+    {% endif %}
+{% endfor %}
 				
 						<!-- COMMON EVENTS -->
 						<div class="form-section">
 							<h2 class="event">COMMON EVENTS</h2>
-				
-							<h3 class="game">Step Up <span class="small">(two team per school)</span></h3>
-							<label for="step-up-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="step-up-participant" name="entry.1906500189">
-				
-							<h3 class="game">Dunk In <span class="small">(any number of team per school)</span></h3>
-							<label for="dunk-in-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="dunk-in-participant" name="entry.955193265">
-				
-							<h3 class="game">The Final Three <span class="small">(any number of team per school)</span></h3>
-							<label for="final-three-participant" class="font">Participant Name:</label>
-							<input type="text" class="input-field" id="final-three-participant" name="entry.1184685411">
-						</div>
+{% for i in events %}
+    {% if i.host.name.upper == "COMMON EVENT" %}
+        {% if i.is_team_event %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            
+            <label for="team-{{i.id}}-participant" class="font">Team:</label>
+            <div class="input-container" id="team-{{i.id}}-container">
+                <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Next Team </button>
+            
+        {% else %}
+            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            
+            <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
+            <div class="input-container" id="individual-{{i.id}}-container">
+                <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
+            </div>
+            
+            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+        {% endif %}
+        <br><br> <!-- Add some spacing between events -->
+    {% endif %}
+{% endfor %}
 
 						<!-- Payment Section -->
 						<div class="qr-section">
@@ -174,14 +206,29 @@
 </html>
 
 <script>
-function addInput(containerId, nameAttr) {
-	const container = document.getElementById(containerId);
+let d = {};
 
-	const input = document.createElement('input');
-	input.type = 'text';
-	input.name = nameAttr;
-	input.className = 'input-field';
+function addInput(containerId, nameAttr, count) {
+    if (!(nameAttr in d)) {
+        d[nameAttr] = 1;
+    } else {
+        d[nameAttr] += 1;
+    }
+    
+    if (d[nameAttr] >= count) {
+        return;
+    }
 
-	container.appendChild(input);
+	else{
+			const container = document.getElementById(containerId);
+
+			const input = document.createElement('input');
+			input.type = 'text';
+			input.name = nameAttr;
+			input.className = 'input-field';
+
+			container.appendChild(input);
+	}
 }
+
 </script>
