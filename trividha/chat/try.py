@@ -1,12 +1,10 @@
-from django.shortcuts import render
 import base64
 import os
 from google import genai
 from google.genai import types
-import markdown
 
-# Create your views here.
-def generate(question):
+x=input("say")
+def generate(w):
     client = genai.Client(
         api_key="AIzaSyDlGHvJTqt3H1Hf24SOYiaIplectUepS0Q",
     )
@@ -39,7 +37,7 @@ press pursuit
 find mystery
 solve the case
 
-you have to welcome user with greetings. and answer the question with relevant answer from this. if the users question is out of the topic. just answer question is not related to trividha"""),
+you have to welcome user with greetings. and answer the question with relevant answer from this. if the users question is out of the topic. just answer question is not related to trividha. Most importently the answer should be structured in a clean format use/n to divide sections and all."""),
             ],
         ),
         types.Content(
@@ -119,7 +117,7 @@ I'm still struggling to provide a more detailed explanation of \"Press Pursuit.\
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text=question),
+                types.Part.from_text(text=w),
             ],
         ),
     ]
@@ -139,31 +137,5 @@ I'm still struggling to provide a more detailed explanation of \"Press Pursuit.\
         contents=contents,
         config=generate_content_config,
     ):
-        response_text = ""
-        for chunk in client.models.generate_content_stream(
-            model=model,
-            contents=contents,
-            config=generate_content_config,
-        ):
-            response_text += chunk.text
-    response_html = markdown.markdown(response_text,extensions=['nl2br', 'fenced_code'])
-    return response_html
-
-
-
-
-def chat(request):
-    if request.POST:
-        message=request.POST.get("question")
-        answer=generate(message)
-        return render(request,"chat.html",{"answer":answer})
-    return render(request,"chat.html")
-
-
-
-
-
-
-
-
-
+        print(chunk.text, end="")
+generate(x)
