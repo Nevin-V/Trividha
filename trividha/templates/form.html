@@ -60,7 +60,7 @@
 {% for i in events %}
     {% if i.host.name.upper == "STHITHAPRAGYA" %}
         {% if i.is_team_event %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} team per school)</span> {%endif%}</h3>
             
             <label for="team-{{i.id}}-participant" class="font">Team:</label>
             <div class="input-container" id="team-{{i.id}}-container">
@@ -69,7 +69,7 @@
             <button class="but"  type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Next Team </button>
             
         {% else %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} participants per school)</span> {%endif%}</h3>
             
             <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
             <div class="input-container" id="individual-{{i.id}}-container">
@@ -91,7 +91,7 @@
 {% for i in events %}
     {% if i.host.name.upper == "OPTAZIA" %}
         {% if i.is_team_event %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} team per school)</span> {%endif%}</h3>
             
             <label for="team-{{i.id}}-participant" class="font">Team:</label>
             <div class="input-container" id="team-{{i.id}}-container">
@@ -101,7 +101,7 @@
             <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Next Team </button>
             
         {% else %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} participants per school)</span> {%endif%}</h3>
             
             <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
             <div class="input-container" id="individual-{{i.id}}-container">
@@ -120,7 +120,7 @@
 {% for i in events %}
     {% if i.host.name.upper == "XENORA" %}
         {% if i.is_team_event %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} team per school)</span> {%endif%}</h3>
             
             <label for="team-{{i.id}}-participant" class="font">Team:</label>
             <div class="input-container" id="team-{{i.id}}-container">
@@ -130,7 +130,7 @@
             <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Next Team </button>
             
         {% else %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} participants per school)</span> {%endif%}</h3>
             
             <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
             <div class="input-container" id="individual-{{i.id}}-container">
@@ -149,7 +149,7 @@
 {% for i in events %}
     {% if i.host.name.upper == "COMMON EVENT" %}
         {% if i.is_team_event %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} team per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} team per school)</span> {%endif%}</h3>
             
             <label for="team-{{i.id}}-participant" class="font">Team:</label>
             <div class="input-container" id="team-{{i.id}}-container">
@@ -159,7 +159,7 @@
             <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Next Team </button>
             
         {% else %}
-            <h3 class="game">{{i.name}}<span class="small">({{i.max_teams_per_school}} participants per school)</span></h3>
+            <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} participants per school)</span> {%endif%}</h3>
             
             <label for="individual-{{i.id}}-participant" class="font">Participant Name:</label>
             <div class="input-container" id="individual-{{i.id}}-container">

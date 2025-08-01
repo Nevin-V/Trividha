@@ -154,6 +154,7 @@ I'm still struggling to provide a more detailed explanation of \"Press Pursuit.\
 
 def chat(request):
     if request.POST:
+        
         message=request.POST.get("question")
         answer=generate(message)
         return render(request,"chat.html",{"answer":answer})
