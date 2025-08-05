@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "home",
     'form',
-    "chat"
+    "chat",
+    "data_view"
 ]
 
 MIDDLEWARE = [

@@ -4,6 +4,9 @@ from .models import school,basic_details
 from .models import participant_details
 from django.contrib import messages
 from home.models import details
+
+
+
 # Create your views here.
 def register(request):
     if request.method == 'POST':

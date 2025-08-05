@@ -2569,15 +2569,15 @@ h3 {
 
 /* line 9, ../../Arafath/CL/December/236. Event-02/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 148px;
-  padding-bottom: 140px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 @media (max-width: 767px) {
   /* line 9, ../../Arafath/CL/December/236. Event-02/HTML/scss/_footer.scss */
   .footer .footer_top {
-    padding-top: 60px;
-    padding-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
   }
 }
 
@@ -2598,8 +2598,8 @@ h3 {
 
 /* line 28, ../../Arafath/CL/December/236. Event-02/HTML/scss/_footer.scss */
 .footer .footer_top .footer_widget p {
-  margin-top: 25px;
-  margin-bottom: 41px;
+  margin-top: 2px;
+  margin-bottom: 5px;
 }
 
 /* line 34, ../../Arafath/CL/December/236. Event-02/HTML/scss/_footer.scss */

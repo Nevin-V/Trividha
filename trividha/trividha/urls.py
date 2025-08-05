@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('form.urls')),
     path('', include('chat.urls')),
+    path('', include('data_view.urls')),
 
 
 ]

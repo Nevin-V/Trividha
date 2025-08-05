@@ -1,0 +1,25 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/data.css' %}">
+</head>
+<body>
+  <h1>DOWNLOAD EXCEL</h1>
+    <h2>Select School</h2>
+    <form  method="post">
+    {%csrf_token%}
+    <select id="school" name="school">
+      {%for i in schools%}
+    <option value="{{i.name}}">{{i.name}}</option>
+      {%endfor%}
+    </select>
+    <button type="submit">Download</button>
+    <br><br>
+    <h2><a href="{%url 'event_data_view'%}"> Select Event</a></h2>
+</body>
+</html>
