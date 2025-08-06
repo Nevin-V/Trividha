@@ -15,5 +15,8 @@ class details(models.Model):
     inaugration_poster=models.ImageField(null=True,upload_to="images/")
     chief_guest_poster=models.ImageField(null=True,upload_to="images/")
 
+    def __str__(self):
+        return "Trividha Website Layout"
+
     
 

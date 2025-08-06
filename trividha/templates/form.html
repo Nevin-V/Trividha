@@ -15,7 +15,7 @@
 		<!-- code here -->
 		<div class="card">
 
-			<form class="card-form" method="post" >
+			<form class="card-form" method="post" id="form">
 				{%if date%}
 					<h1 id="heading">TRIVIDHA {{date.date.year}}</h1>
 				{%endif%}
@@ -51,7 +51,7 @@
 						<div class="note">
 
 						<br>NOTE:
-						<br>TEAM MEMBERS SHOULD BE SEPERATED BY '\' AND NEXT SET OF PARTICIPANTS SHOULD BE SEPERATED BY " , " WHILE ENTERING NAMES 
+						<br>TEAM MEMBERS SHOULD BE IN SAME FIELD SEPERATED BY ','
 					    </div>
 						<!-- STHITHAPRAGYA Events -->
 						<div class="form-section">
@@ -108,7 +108,7 @@
                 <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
             
-            <button  class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+            <button  class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Participant</button>
         {% endif %}
         <br><br> <!-- Add some spacing between events -->
     {% endif %}
@@ -127,7 +127,7 @@
                 <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
             
-            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Next Team </button>
+            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Next Team </button>
             
         {% else %}
             <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} participants per school)</span> {%endif%}</h3>
@@ -137,7 +137,7 @@
                 <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
             
-            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Participant</button>
         {% endif %}
         <br><br> <!-- Add some spacing between events -->
     {% endif %}
@@ -156,7 +156,7 @@
                 <input type="text" id="team-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
             
-            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Next Team </button>
+            <button class="but" type="button" onclick="addInput('team-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Next Team </button>
             
         {% else %}
             <h3 class="game">{{i.name}} {%if i.max_teams_per_school > 0 %}<span class="small">({{i.max_teams_per_school}} participants per school)</span> {%endif%}</h3>
@@ -166,18 +166,20 @@
                 <input type="text" id="individual-{{i.id}}-participant" class="input-field" name="event_{{i.id}}_participants[]">
             </div>
             
-            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]')">Add Participant</button>
+            <button class="but" type="button" onclick="addInput('individual-{{i.id}}-container','event_{{i.id}}_participants[]','{{i.max_teams_per_school}}')">Add Participant</button>
         {% endif %}
         <br><br> <!-- Add some spacing between events -->
     {% endif %}
 {% endfor %}
 
+
+
 						<!-- Payment Section -->
 						<div class="qr-section">
-							<h2>Payment</h2>
+						<!--	<h2>Payment</h2>
 							<p class="note">Please scan the QR code below to make the payment and upload the screenshot of the payment in the next redirecting google form.And if there is any change in your data please confirm it before submiting the form</p>
 							<p class="note">Contact +91 6282713209 for any doubts regarding online payment.</p>
-							<img src="img/qr.jpg" alt="QR Code">
+							<img src="img/qr.jpg" alt="QR Code"> -->
 							<p id="total-amount" ></p>
 							
 						<!--	<input type="file" id="payment-screenshot" name="" accept="image/*" > -->
@@ -193,10 +195,12 @@
 								document.getElementById('total-amount').innerText = 'Total Amount to be Paid: ₹' + totalAmount;
 							});
 						</script>
-						<button type="submit"  class="button-87 ">Upload screenshot</button>
+
+                    
+						<button type="submit"  class="button-87 ">SUBMIT</button>
 						
 					</form>
-				</body>
+
 			</form>
 		
 		</div>
@@ -231,4 +235,22 @@ function addInput(containerId, nameAttr, count) {
 	}
 }
 
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll("#form input");
+
+    inputs.forEach((input, index) => {
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Stop form submission
+                let next = inputs[index + 1];
+                if (next) {
+                    next.focus(); // Move to next field
+                }
+            }
+        });
+    });
+});
 </script>

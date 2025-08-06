@@ -41,4 +41,4 @@ class participant_details(models.Model):
     events=models.ForeignKey(events, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.events.name
+        return self.school.name

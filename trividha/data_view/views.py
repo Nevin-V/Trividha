@@ -7,8 +7,11 @@ from form.models import participant_details,events,school
 from openpyxl.styles import Font, Alignment
 from .forms import eventForm
 from openpyxl.utils import get_column_letter
+from django.contrib.auth.decorators import login_required
 
 
+
+@login_required(login_url='/admin/login/')
 def view(request):
     if request.POST:
             wb = Workbook()
@@ -53,7 +56,9 @@ def view(request):
             return response
     event=events.objects.all()
     return  render(request,"event_data_view.html",{"event":event})
-    
+
+
+@login_required(login_url='/admin/login/')
 def view_school(request):
     if request.POST:
          
