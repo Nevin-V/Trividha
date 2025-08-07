@@ -16,6 +16,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 
 
@@ -47,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     "home",
     'form',
@@ -159,3 +164,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # Use App Password for Gmail
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY_CLOUDINARY'),
+    'API_SECRET': os.getenv('API_SECRET_CLOUDINARY')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
