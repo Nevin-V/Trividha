@@ -28,7 +28,6 @@ class events(models.Model):
     name=models.CharField(max_length=30)
     host=models.ForeignKey(main_events, on_delete=models.CASCADE,default=1)
     is_team_event = models.BooleanField(default=False)
-    max_team_size = models.PositiveIntegerField(null=True, blank=True)
     max_teams_per_school = models.PositiveIntegerField(null=True, blank=True)
     
     def __str__(self):
