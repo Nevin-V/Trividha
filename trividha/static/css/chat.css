@@ -11,7 +11,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     background-image: url('/static/img/chat_bot.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -32,7 +31,7 @@ body {
 }
 
 .chat-header {
-    background: linear-gradient(135deg, #4f46e5, #000000);
+    background: linear-gradient(135deg, #1c0042, #000000);
     color: black;
     padding: 20px;
     text-align: center;
@@ -268,6 +267,7 @@ body {
         height: 100vh;
         border-radius: 0;
         max-width: none;
+        max-height: -webkit-fill-available;
     }
     
     .chat-header h1 {
@@ -285,6 +285,7 @@ body {
         width: fit-content;
         font-family: emoji;
         padding: 5px;
+        margin-top: 10px;
 
 }
 #divContainer{

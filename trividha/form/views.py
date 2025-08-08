@@ -67,7 +67,7 @@ def register(request):
 
         email = EmailMessage(
         subject=f"{school_name} - New registration",
-        body=f"Hello \n New school Registered for Trividha : {school_name} \n Total students: {part} \n check participant details at: /data_view ",
+        body=f"Hello \n New school Registered for Trividha : {school_name} \n Total students: {part} \n check participant details at: trividha.onrender/data_view.com ",
         from_email="nevinitro@gmail.com",
         to=["nevinvskaria@gmail.com"],  )
         email.send()
