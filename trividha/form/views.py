@@ -68,8 +68,8 @@ def register(request):
         email = EmailMessage(
         subject=f"{school_name} - New registration",
         body=f"Hello \n New school Registered for Trividha : {school_name} \n Total students: {part} \n check participant details at: https://trividha.onrender.com/data_view/ ",
-        from_email="nevinitro@gmail.com",
-        to=["nevinvskaria@gmail.com"],  )
+        from_email="trividhaofficial2025@gmail.com",
+        to =["siteoftrividha@gmail.com"],  )
         email.send()
         
         return redirect('success')  
