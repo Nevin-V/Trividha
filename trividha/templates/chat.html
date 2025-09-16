@@ -71,6 +71,7 @@
             newDiv.innerHTML = `
                 <p>${message}</p>
             `;
+            
 
             const div2 = document.createElement('div');
             div2.className = 'answer';
@@ -81,6 +82,8 @@
             const container = document.getElementById('divContainer');
             const container2 = document.getElementById('divContainer2');
             container.style.display = "block";
+            messageInput.style.color = 'white';
+
             container.appendChild(newDiv);
             container2.appendChild(div2);
 
