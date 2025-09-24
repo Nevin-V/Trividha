@@ -8,6 +8,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Register</title>
 	<link rel="stylesheet" href="{%static 'form.css' %}?v=2">
+
+    <style>
+	/* Add styles for messages */
+	.messages {
+		margin: 20px 0;
+	}
+	.alert {
+		padding: 15px;
+		margin-bottom: 20px;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		font-weight: bold;
+	}
+	.alert-danger {
+		color: #721c24;
+		background-color: #f8d7da;
+		border-color: #f5c6cb;
+	}
+	.alert-success {
+		color: #155724;
+		background-color: #d4edda;
+		border-color: #c3e6cb;
+	}
+	.alert-warning {
+		color: #856404;
+		background-color: #fff3cd;
+		border-color: #ffeaa7;
+	}
+</style>
 </head>
 <body>
 
@@ -19,6 +48,21 @@
 				{%if date%}
 					<h1 id="heading">TRIVIDHA {{date.date.year}}</h1>
 				{%endif%}
+                {% if messages %}
+	<div class="messages">
+		{% for message in messages %}
+			{% if message.tags == 'error' %}
+				<div class="alert alert-danger" role="alert">
+					❌ {{ message }}
+				</div>
+			{% elif message.tags == 'warning' %}
+				<div class="alert alert-warning" role="alert">
+					⚠️ {{ message }}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endif %}
 					<form id="event-registration-form" method="post">
 				{% csrf_token %}
 						<!-- Basic Information -->

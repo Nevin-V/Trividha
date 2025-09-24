@@ -5,6 +5,7 @@ from .models import participant_details
 from django.contrib import messages
 from home.models import details
 from django.core.mail import EmailMessage
+from django.db import transaction, IntegrityError
 
 
 # Create your views here.
@@ -24,8 +25,16 @@ def register(request):
             return render(request, 'form.html', {"events": event_obj})
         
         # Create or get the school OBJECT (not just the string)
-        current_school, created = school.objects.get_or_create(name=school_name)
-        print(f"School object: {current_school} (Created: {created})")
+        try:
+            current_school = school.objects.get(name=school_name)
+            # School already exists - show error message
+            messages.error(request, f'School "{school_name}" is already registered! if you want to register more participants please contact +91 82898 27930')
+            event_obj = events.objects.all()
+            return render(request, 'form.html', {"events": event_obj})
+        except school.DoesNotExist:
+            # School doesn't exist, create new one
+            current_school = school.objects.create(name=school_name)
+            print(f"New school created: {current_school}")
 
 
         part=request.POST.get("participant_no")
